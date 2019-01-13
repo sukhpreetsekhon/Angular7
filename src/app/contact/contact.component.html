@@ -1,0 +1,32 @@
+<h1>Contact Us</h1>
+
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+  <h5 *ngIf="success" >You have successfully submitted your form</h5>
+  <label class="label">
+      Name:
+      <input type="text" formControlName="name" class="name">
+      <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+        <div *ngIf="messageForm.controls.name.errors.required">Your name is required</div>
+      </div>
+    </label>
+    <label class="label">
+        Message:
+        <textarea formControlName="message" class="textArea"></textarea>
+        <div *ngIf="submitted && messageForm.controls.message.errors" class="error">
+          <div *ngIf="messageForm.controls.message.errors.required">A message is required</div>
+        </div>
+      </label>
+      <div>
+          <input type="submit" value="Send message" class="cta">
+      </div>
+
+
+    </form>
+
+    <div *ngIf="submitted" class="results">
+      <strong>Name:</strong>
+      <span>{{ messageForm.controls.name.value }}</span>
+
+      <strong>Message:</strong>
+      <span>{{ messageForm.controls.message.value }}</span>
+    </div>
