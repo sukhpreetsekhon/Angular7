@@ -1,5 +1,6 @@
 import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  users: Object;
-  constructor(private data: DataService) { }
+  loginFormGroup: FormGroup;
+  submitted = false;
+  success = false;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.data.getUser().subscribe(data => {
-      this.users = data;
-      console.log(this.users);
-    } );
+    this.loginFormGroup = this.formBuilder.group({
+      email: [null, Validators.compose([
+        Validators.email,
+        Validators.required])],
+      password: [null, Validators.compose([
+        Validators.required
+      ])]
+    });
   }
-
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginFormGroup.invalid) {
+      return;
+    }
+    this.success = true;
+  }
 
 }

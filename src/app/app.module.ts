@@ -1,3 +1,4 @@
+import { RegistrerComponent } from './register/registrer.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavComponent,
     AboutComponent,
     ContactComponent,
-    HomeComponent
+    HomeComponent,
+    RegistrerComponent
   ],
   imports: [
     BrowserModule,
