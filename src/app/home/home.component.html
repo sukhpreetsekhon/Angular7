@@ -21,13 +21,18 @@
           <div class="form-group">
 
             <input type="email" class="form-control" id="inputEmail" placeholder="Email Address" formControlName ="email">
+            <div *ngIf="submitted && loginFormGroup.controls.email.errors" class="error">
+              <div *ngIf="loginFormGroup.controls.email.errors.required" >Email is required</div>
+            </div>
 
           </div>
 
           <div class="form-group">
 
             <input type="password" class="form-control" id="inputPassword" placeholder="Password" ormControlName ="password">
-
+            <div *ngIf="submitted && loginFormGroup.controls.password.errors" class="error">
+                <div *ngIf="loginFormGroup.controls.password.errors.required" >Password is required</div>
+              </div>
           </div>
           <div class="forgot">
             <a href="reset.html">Forgot password?</a>
@@ -35,6 +40,13 @@
           <button type="submit" class="btn btn-primary">Login</button>
           <button type="submit" class="registerBtn" routerLink = "/register">Register</button>
         </form>
+        <div *ngIf="submitted" class="results">
+            <strong>Name:</strong>
+            <span>{{ loginFormGroup.controls.email.value }}</span>
+
+            <strong>Message:</strong>
+            <span>{{ loginFormGroup.controls.password.value }}</span>
+          </div>
       </div>
     </div>
   </div>
